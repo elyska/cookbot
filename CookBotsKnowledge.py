@@ -108,7 +108,6 @@ fixedMessages = [
         'response':['Great!', "I'm glad to hear that!",'Cool']
     }
 ]
-MeaningfulWords = []
 
 
 
