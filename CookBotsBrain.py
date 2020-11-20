@@ -210,21 +210,10 @@ def semiIntelligentAnswer1(message): # for terminal
             answer = answer + ingredient +'\n'
         answer += 'You can find the full recipe on ' + recipe1['url']
     else:
-        answer = "Interesting. What do you think about this recipe:\n" + daytimeRecipe(diets, health)
+        answer = daytimeRecipe(diets, health)
     return answer
 
-def fixAnswers():
-    message = ""
-    message = random.choice(CookBotsKnowledge.fixedMessages['GreetingMessages'])
-    return message
 
 
-def splitMeaningfulWords(message):
-    keyWords = []  # this is where key words will be store.
-    for word in message:
-        for key_word in CookBotsKnowledge.MeaningfulWords:
-            if word == key_word:
-                keyWords.append(word)
-    return keyWords
 
 
