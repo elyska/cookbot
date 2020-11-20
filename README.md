@@ -1,2 +1,1 @@
-# MyCookBot
-ALL Project 1 – chatbot
+# CookBot-2
