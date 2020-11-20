@@ -84,7 +84,7 @@ def daytimeRecipe(dietList, healthList):
         return "I am sorry. I couldn't find a recipe for you."
     recipeName = firstFound['label']
     recipeUrl = firstFound['url']
-    answer = ("Interesting. It's time for " + keyword + 'I would recommend ' + recipeName + '? \nYou can find the full recipe on ' + recipeUrl)
+    answer = ("I am sorry. Search for another recipe or try this one: " + recipeName + '\nYou can find the full recipe on ' + recipeUrl)
     return answer
 
 #print(daytimeRecipe())

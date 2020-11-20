@@ -9,7 +9,7 @@ uselessWords = stopwords.words('english')
 # end of code from https://www.nltk.org/book/ch02.html
 
 
-addUselessWords = ['would','not','cook','like','have','got','make','allergy','allergic', 'lowcarb', 'diet', 'low', 'carb', 'fat', 'lowfat', 'balanced', 'high', 'protein', 'highprotein', 'vegan', 'vegetarian','please','want','prepare','help','thanks','thank','nt']
+addUselessWords = ['would','not','cook','like','have','got','make','allergy','allergic', 'lowcarb', 'diet', 'low', 'carb', 'fat', 'lowfat', 'balanced', 'high', 'protein', 'highprotein', 'vegan', 'vegetarian','please','want','prepare','help','thanks','thank','nt','dont']
 #for word in addUselessWords:
     #uselessWords.append(word)
 

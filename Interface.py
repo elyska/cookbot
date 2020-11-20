@@ -52,7 +52,7 @@ class MyClient(discord.Client):
                     answer = semiIntelligentAnswer(self.userInput,self.recipeNumber)
                     await message.channel.send(answer)
                     self.firstRecipeFound = True # indicates that the first recipe was already found
-                    if answer == "I am sorry. I couldn't find a recipe for you." or "Interesting. It's time for" in answer:
+                    if answer == "I am sorry. I couldn't find a recipe for you." or "I am sorry. Search for another recipe or try this one" in answer:
                         # reset the attributes for a new recipe search
                         self.resetAttributes()
                 else: # after a recipe is found
