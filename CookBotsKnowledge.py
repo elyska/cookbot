@@ -87,7 +87,7 @@ fixedMessages = [
         'response':['I am CookBot.']
     },
     {
-        'message': ['how are you', 'how you doin','how you doing',"how's it going","how have you been","how are you doing"],
+        'message': ['how are you', 'how you doin','how you doing',"how's it going","how have you been","how are you doing","how are you doin"],
         'response':['Good, thanks. What about you?', 'Fine. Thank you. And how are you?','Fine, thanks. You ok?']
     },
     {

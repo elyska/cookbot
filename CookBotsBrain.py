@@ -61,7 +61,7 @@ def fixedAnswer(message):
             answer = random.choice(listOfAnswers)
             return answer
     return ''
-
+# https://docs.python.org/3/library/datetime.html
 def daytimeRecipe(dietList, healthList):
     '''This function takes 2 lists inputs and returns a recipe according to current time. A breakfast recipe before 9 am,
     a lunch recipe before 12 am, a dinner recipe after 12 am.'''
@@ -156,7 +156,7 @@ def semiIntelligentAnswer(message, index): # for discord
         answer = daytimeRecipe(diets, health)
     return answer
 
-def semiIntelligentAnswer1(message): # for terminal
+def semiIntelligentAnswer1(message): # for Python console
     '''This function takes 2 inputs: a string and an integer. It returns a string which is a recipe based on the message. Additional questions
     are asked if the user did not provide sufficient information.'''
     sentence = processUserMessage(message)

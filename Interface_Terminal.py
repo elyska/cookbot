@@ -1,4 +1,4 @@
-# Interface Module to run in the terminal
+# Interface Module to run on the Python console
 from CookBotsBrain import*
 
 # code written by Albert Xhebexhiu
