@@ -62,11 +62,11 @@ def fixedAnswer(message):
             answer = random.choice(listOfAnswers)
             return answer
     return ''
-# https://docs.python.org/3/library/datetime.html
+
 def daytimeRecipe(dietList, healthList):
     '''This function takes 2 lists inputs and returns a recipe according to current time. A breakfast recipe before 9 am,
     a lunch recipe before 12 am, a dinner recipe after 12 am.'''
-    hourNow = datetime.now().hour
+    hourNow = datetime.now().hour # https://docs.python.org/3/library/datetime.html
     if hourNow < 9:
         keyword = 'breakfast'
     elif hourNow < 12:
