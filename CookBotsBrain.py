@@ -4,7 +4,10 @@ from datetime import *
 import random
 import string
 
-# code inspired by https://www.programiz.com/python-programming/examples/remove-punctuation
+###############################################################################################################################
+##################### code based on https://www.programiz.com/python-programming/examples/remove-punctuation ##################
+###############################################################################################################################
+
 def processUserMessage(message):
     '''This function takes a string as an input, returns a string in lower case without punctuation, brackets etc.'''
     punctuation = string.punctuation
@@ -13,7 +16,10 @@ def processUserMessage(message):
         if letter not in punctuation:
             newMessage += letter
     return newMessage.lower()
-# end of code inspired by https://www.programiz.com/python-programming/examples/remove-punctuation
+
+###############################################################################################################################
+################# end of code based on https://www.programiz.com/python-programming/examples/remove-punctuation ###############
+###############################################################################################################################
 
 def separateContractions(wordList):
     '''This function takes a list of strings as an input. Every element containing an apostrophe is replaced
@@ -45,15 +51,6 @@ def meaningfulWords(message):
             meaningfulList.append(word)
     return meaningfulList
 
-#x = "I don't like tomatoes."
-#y = "I'd like to make a pizza. I am allergic to peanuts"
-#z = "I've got an apple. I don't have tomatoes."
-#print(meaningfulWords(x))
-#print(meaningfulWords(y))
-#print(meaningfulWords(z))
-
-#print(processUserMessage("Hola! (vsss)gr JZRFa<sdf: ski'rj."))
-
 def fixedAnswer(message):
     '''This function takes a string as an input and returns a string which an appropriate reply to a given message or
     an empty string if the message is not in the list fixedMessages.'''
@@ -64,8 +61,6 @@ def fixedAnswer(message):
             answer = random.choice(listOfAnswers)
             return answer
     return ''
-
-#print(fixedAnswer('hey'))
 
 def daytimeRecipe(dietList, healthList):
     '''This function takes 2 lists inputs and returns a recipe according to current time. A breakfast recipe before 9 am,
@@ -86,16 +81,6 @@ def daytimeRecipe(dietList, healthList):
     recipeUrl = firstFound['url']
     answer = ("I am sorry. Search for another recipe or try this one: " + recipeName + '\nYou can find the full recipe on ' + recipeUrl)
     return answer
-
-#print(daytimeRecipe())
-
-
-# x = ["i", "don't", "like", "tomatoes"]
-# y = ["i'd", "like","to","make", "a", "pizza"]
-# print(separateContractions(x))
-# print(separateContractions(y))
-
-
 
 def extractDiets(sentence):
     '''This function takes a string as an input and returns a list of diet filters.'''
@@ -127,7 +112,6 @@ def extractHealthFilters(sentence):
     if 'alcoholfree' in sentence or 'alcohol free' in sentence:
         health.append('alcohol-free')
     return health
-
 
 def semiIntelligentAnswer(message, index): # for discord
     '''This function takes 2 inputs: a string and an integer. It returns a string which is a recipe based on the message.
@@ -161,7 +145,6 @@ def semiIntelligentAnswer(message, index): # for discord
     print(keywords)
     print(diets)
     print(health)
-    #print(index)
     recipes = searchOutput(keywords, health, diets)
     if recipes != []:
         try:
@@ -175,8 +158,6 @@ def semiIntelligentAnswer(message, index): # for discord
     else:
         answer = daytimeRecipe(diets, health)
     return answer
-
-#semiIntelligentAnswer("I would like some pizza, but i'm vegetarian. And I am allergic to tree nuts.")
 
 def semiIntelligentAnswer1(message): # for terminal
     '''This function takes 2 inputs: a string and an integer. It returns a string which is a recipe based on the message. Additional questions

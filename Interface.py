@@ -3,7 +3,9 @@
 from CookBotsBrain import*
 import discord
 
-# code based on https://pypi.org/project/discord.py/
+###############################################################################################################################
+########################### code inspired by https://pypi.org/project/discord.py/##############################################
+###############################################################################################################################
 
 class MyClient(discord.Client):
 
@@ -24,7 +26,6 @@ class MyClient(discord.Client):
     async def on_ready(self):
         async def on_ready(self):
             print('Logged on as', self.user)
-
 
     async def on_message(self, message):
         # don't respond to ourselves
@@ -75,4 +76,6 @@ class MyClient(discord.Client):
 client = MyClient()
 client.run('Nzc2ODQ4NjQ5MTk2MDExNTQw.X662rw.jHrbtM80K0DeSfdH-sp09TgUqrA')
 
-# end code based on https://pypi.org/project/discord.py/
+###############################################################################################################################
+####################### end of code inspired by https://pypi.org/project/discord.py/###########################################
+###############################################################################################################################

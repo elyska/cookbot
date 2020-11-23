@@ -5,12 +5,8 @@ from CookBotsBrain import*
 from CookBotsKnowledge import*
 
 class TestBot(unittest.TestCase):
-    # meaningful input, recipes found
-    #def testAccessApi1(self):
-    #    self.assertIn('recipe',dummyAccessApi()['hits'][0])
-    # meaningless input, no recipes found
-    #def testAccessApi2(self):
-    #    self.assertNotIn('recipe',dummyAccessApi()['hits'][0])
+    def testDummyAccessApi(self):
+        self.assertIn('recipe',dummyAccessApi()['hits'][0])
 
     # meaningful input, recipes found
     def testAccessApi1(self):
@@ -36,8 +32,6 @@ class TestBot(unittest.TestCase):
 
     def testProcessUserMessage(self):
         self.assertEqual("hola vsssgr jzrfasdf skirj",processUserMessage("Hola! (vsss)gr JZRFa<sdf: ski'rj."))
-
-
 
 
 if __name__ == '__main__':
