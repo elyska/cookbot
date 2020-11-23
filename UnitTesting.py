@@ -1,4 +1,4 @@
-# tests
+# Tests
 
 import unittest
 from CookBotsBrain import*
