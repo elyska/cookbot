@@ -142,9 +142,6 @@ def semiIntelligentAnswer(message, index): # for discord
             usefulWords.remove(word)
 
     keywords = ' '.join(usefulWords)
-    print(keywords)
-    print(diets)
-    print(health)
     recipes = searchOutput(keywords, health, diets)
     if recipes != []:
         try:
