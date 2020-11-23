@@ -5,9 +5,10 @@ from datetime import *
 import random
 import string
 
-###############################################################################################################################
-##################### code based on https://www.programiz.com/python-programming/examples/remove-punctuation ##################
-###############################################################################################################################
+#######################################################################################
+################################# code based on #######################################
+####### https://www.programiz.com/python-programming/examples/remove-punctuation ######
+#######################################################################################
 
 def processUserMessage(message):
     '''This function takes a string as an input, returns a string in lower case without punctuation, brackets etc.'''
@@ -18,9 +19,10 @@ def processUserMessage(message):
             newMessage += letter
     return newMessage.lower()
 
-###############################################################################################################################
-################# end of code based on https://www.programiz.com/python-programming/examples/remove-punctuation ###############
-###############################################################################################################################
+#######################################################################################
+###########################end of code based on #######################################
+####### https://www.programiz.com/python-programming/examples/remove-punctuation ######
+#######################################################################################
 
 def separateContractions(wordList):
     '''This function takes a list of strings as an input. Every element containing an apostrophe is replaced
