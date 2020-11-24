@@ -11,7 +11,8 @@ import string
 #######################################################################################
 
 def processUserMessage(message):
-    '''This function takes a string as an input, returns a string in lower case without punctuation, brackets etc.'''
+    '''This function takes a string as an input, returns a string in lower case
+    without punctuation, brackets etc.'''
     punctuation = string.punctuation
     newMessage = ''
     for letter in message:
@@ -25,29 +26,35 @@ def processUserMessage(message):
 #######################################################################################
 
 def separateContractions(wordList):
-    '''This function takes a list of strings as an input. Every element containing an apostrophe is replaced
-    by two elements, one of them being the contraction and the other one whatever is left. Apostrophe is left only in n't.
-    A new list of strings is returned.'''
+    '''This function takes a list of strings as an input. Every element containing an
+    apostrophe is replaced by two elements, one of them being the contraction and the
+    other one whatever is left. Apostrophe is left only in n't. A new list of strings
+    is returned.'''
     newList = wordList.copy()
     for word in wordList:
         if "'" in word:
             position = word.find("'")
             if word[position - 1].lower() == 'n': # for n't contractions
-                newList.append(word[0:(position - 1)]) # the part of the word before the contraction
+                newList.append(word[0:(position - 1)]) # part before the contraction
                 newList.append(word[(position - 1):]) # the contraction
             else:
-                newList.append(word[0:position]) # the part of the word before the contraction
-                newList.append(word[position+1:]) # the contraction without apostrophe
+                newList.append(word[0:position]) # part before the contraction
+                newList.append(word[position+1:]) # contraction without apostrophe
             newList.remove(word)
     return newList
 
 def meaningfulWords(message):
-    '''This function takes a string as an input and returns a list of meaningful words.'''
-    listOfWords = message.split() # create a list because separateContractions takes a list as an input
+    '''This function takes a string as an input and returns a list of
+    meaningful words.'''
+    # create a list because separateContractions takes a list as an input
+    listOfWords = message.split()
     listOfWords2 = separateContractions(listOfWords) # "don't" -> "do", "n't"
-    strMessage = ' '.join(listOfWords2) # transform to a string again
-    processedMessage = processUserMessage(strMessage) # delete punctuation, to lowercase
-    processedList = processedMessage.split() # create a list again so we can check each word
+    # transform to a string again
+    strMessage = ' '.join(listOfWords2)
+    # delete punctuation, to lowercase
+    processedMessage = processUserMessage(strMessage)
+    # create a list again so we can check each word
+    processedList = processedMessage.split()
     meaningfulList = []
     for word in processedList:
         if word not in uselessWords:
@@ -55,19 +62,23 @@ def meaningfulWords(message):
     return meaningfulList
 
 def fixedAnswer(message):
-    '''This function takes a string as an input and returns a string which an appropriate reply to a given message or
-    an empty string if the message is not in the list fixedMessages.'''
+    '''This function takes a string as an input and returns a string which
+    an appropriate reply to a given message or an empty string if the message
+    is not in the list fixedMessages.'''
     message = processUserMessage(message)
-    for i in range(len(fixedMessages)): # for every dictionary in the list of fixed messages
-        if message in fixedMessages[i]['message']: # if the message is a value of the key 'message' in the i-th dictionary
+    # go through every dictionary in the list of fixed messages
+    for i in range(len(fixedMessages)):
+        # if the message is a value of the key 'message' in the i-th dictionary
+        if message in fixedMessages[i]['message']:
             listOfAnswers = fixedMessages[i]['response']
             answer = random.choice(listOfAnswers)
             return answer
     return ''
 
 def daytimeRecipe(dietList, healthList):
-    '''This function takes 2 lists inputs and returns a recipe according to current time. A breakfast recipe before 9 am,
-    a lunch recipe before 12 am, a dinner recipe after 12 am.'''
+    '''This function takes 2 lists inputs and returns a recipe according to current
+    time. A breakfast recipe before 9 am, a lunch recipe before 12 am, a dinner
+    recipe after 12 am.'''
     hourNow = datetime.now().hour # https://docs.python.org/3/library/datetime.html
     if hourNow < 9:
         keyword = 'breakfast'
@@ -82,11 +93,13 @@ def daytimeRecipe(dietList, healthList):
         return "I am sorry. I couldn't find a recipe for you."
     recipeName = firstFound['label']
     recipeUrl = firstFound['url']
-    answer = ("I am sorry. Search for another recipe or try this one: " + recipeName + '\nYou can find the full recipe on ' + recipeUrl)
+    answer = ("I am sorry. Search for another recipe or try this one: "
+              + recipeName + '\nYou can find the full recipe on ' + recipeUrl)
     return answer
 
 def extractDiets(sentence):
-    '''This function takes a string as an input and returns a list of diet filters.'''
+    '''This function takes a string as an input and returns a list of
+    diet filters.'''
     sentence = processUserMessage(sentence)
     diets = []
     if 'low' in sentence and 'fat' in sentence or 'lowfat' in sentence:
@@ -100,7 +113,8 @@ def extractDiets(sentence):
     return diets
 
 def extractHealthFilters(sentence):
-    '''This function takes a string as an input and returns a list of health filters.'''
+    '''This function takes a string as an input and returns a list of
+    health filters.'''
     sentence = processUserMessage(sentence)
     health = []
     if 'vegan' in sentence:
@@ -117,8 +131,9 @@ def extractHealthFilters(sentence):
     return health
 
 def semiIntelligentAnswer(message, index): # for discord
-    '''This function takes 2 inputs: a string and an integer. It returns a string which is a recipe based on the message.
-    The index enables to search through the recipes.'''
+    '''This function takes 2 inputs: a string and an integer. It returns a string
+    which is a recipe based on the message. The index enables to search through
+    the recipes.'''
     sentence = processUserMessage(message)
 
     # search for diets
@@ -140,7 +155,8 @@ def semiIntelligentAnswer(message, index): # for discord
 
     # extract keywords most likely to be a name of a recipe
     usefulWords = meaningfulWords(message)
-    for word in wordsToDelete: # delete words related to diets and allergies from usefulWords
+    # delete words related to diets and allergies from usefulWords
+    for word in wordsToDelete:
         if word in usefulWords:
             usefulWords.remove(word)
 
@@ -151,16 +167,19 @@ def semiIntelligentAnswer(message, index): # for discord
             recipe1 = recipes[index]
         except IndexError:
             return "I am sorry. I couldn't find a recipe for you."
-        answer = 'You can try ' + recipe1['label'] + '. You only need these ingredients:\n'
+        answer = 'You can try ' + recipe1['label'] \
+                 + '. You only need these ingredients:\n'
         for ingredient in recipe1['ingredientLines']:
             answer = answer + ingredient +'\n'
-        answer += 'You can find the full recipe on ' + recipe1['url'] +'\nDo you like it?'
+        answer += 'You can find the full recipe on ' + recipe1['url'] \
+                  +'\nDo you like it?'
     else:
         answer = daytimeRecipe(diets, health)
     return answer
 
 def semiIntelligentAnswer1(message): # for Python console
-    '''This function takes 2 inputs: a string and an integer. It returns a string which is a recipe based on the message. Additional questions
+    '''This function takes 2 inputs: a string and an integer. It returns a string which
+    is a recipe based on the message. Additional questions
     are asked if the user did not provide sufficient information.'''
     sentence = processUserMessage(message)
     # search for diets
@@ -170,10 +189,12 @@ def semiIntelligentAnswer1(message): # for Python console
     health = extractHealthFilters(sentence)
     # if the user has not mentioned any diets or allergies, ask for them
     if health == []:
-        askForAllergy = input('Are you allergic to anything? Would you like to it to be vegan or vegetarian?')
+        askForAllergy = input('Are you allergic to anything? Would you like '
+                              'to it to be vegan or vegetarian?')
         health = extractHealthFilters(askForAllergy)
     if diets == []:
-        askForDiets = input('Are you on any special diet? Like low-fat, high-protein, balanced... ')
+        askForDiets = input('Are you on any special diet? Like low-fat, '
+                            'high-protein, balanced... ')
         diets = extractDiets(askForDiets)
 
     # extract keywords most likely to be a name of a recipe
@@ -186,7 +207,8 @@ def semiIntelligentAnswer1(message): # for Python console
     recipes = searchOutput(keywords, health, diets)
     if recipes != []:
         recipe1 = recipes[0]
-        answer = 'You can try ' + recipe1['label'] + '. You only need these ingredients:\n'
+        answer = 'You can try ' + recipe1['label'] \
+                 + '. You only need these ingredients:\n'
         for ingredient in recipe1['ingredientLines']:
             answer = answer + ingredient +'\n'
         answer += 'You can find the full recipe on ' + recipe1['url']

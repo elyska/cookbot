@@ -35,39 +35,76 @@ class MyClient(discord.Client):
         else:
             inp = message.content # a new message from the user
             inMemory = fixedAnswer(inp)
-            if inMemory != '' and self.firstRecipeFound == False: # if there is a fixed answer to the message and the user hasn't asked for a new recipe
+
+            # if there is a fixed answer to the message and the user hasn't asked for
+            # a new recipe
+            if inMemory != '' and self.firstRecipeFound == False:
                 await message.channel.send(inMemory)
-            elif 'help' in inp: # if the user asks for help
-                await message.channel.send('I can find a recipe for you based on your diets and allergies.')
+
+            # if the user asks for help
+            elif 'help' in inp:
+                await message.channel.send('I can find a recipe for you based on your '
+                                           'diets and allergies.')
+
             else:
-                self.userInput = self.userInput + ' ' + inp # add keywords, necessary to store previous messages if the bot has to ask additional questions
-                if extractHealthFilters(self.userInput) == [] and self.q1asked == False: # if the user hasn't mentioned any allergies and the bot hasn't asked about them
-                    await message.channel.send('Ok. Would you like to add any allergy filters? And let me know if you are looking for a vegan or vegetarian recipe.') # additional question 1
-                    self.q1asked = True # indicates that the bot has already asked additional question 1
-                    self.userInput = self.userInput + ' ' + str(extractHealthFilters(inp)) +'allergy' # add the health filters to the keywords
+                # add keywords, necessary to store previous messages if the bot has to
+                # ask additional questions
+                self.userInput = self.userInput + ' ' + inp
+
+                # if the user hasn't mentioned any allergies and the bot hasn't asked
+                # about them
+                if extractHealthFilters(self.userInput) == [] and self.q1asked == False:
+                    await message.channel.send('Ok. Would you like to add any allergy '
+                                               'filters? And let me know if you are '
+                                               'looking for a vegan or vegetarian '
+                                               'recipe.') # additional question 1
+                    # indicate that the bot has already asked additional question 1
+                    self.q1asked = True
+                    # add the health filters to the keywords
+                    self.userInput = self.userInput + ' ' \
+                                     + str(extractHealthFilters(inp)) +'allergy'
+
+                # if the user hasn't mentioned any diets and the bot hasn't asked
+                # about them
                 elif extractDiets(self.userInput) == [] and self.q2asked == False:
-                    await message.channel.send('Would you like to add any diet filters? Like low-fat, low-carb, high-protein, balanced... ') # additional question 2
-                    self.q2asked = True # indicates that the bot has already asked additional question 2
-                    self.userInput = self.userInput + ' ' + str(extractDiets(inp)) # add the diet filters to the keywords
-                elif self.firstRecipeFound == False: # if the user hasn't asked for a new recipe yet
+                    await message.channel.send('Would you like to add any diet filters? '
+                                               'Like low-fat, low-carb, high-protein, '
+                                               'balanced... ') # additional question 2
+                    # indicate that the bot has already asked additional question 2
+                    self.q2asked = True
+                    # add the diet filters to the keywords
+                    self.userInput = self.userInput + ' ' + str(extractDiets(inp))
+
+                # if the user hasn't asked for a new recipe yet
+                elif self.firstRecipeFound == False:
                     answer = semiIntelligentAnswer(self.userInput,self.recipeNumber)
                     await message.channel.send(answer)
-                    self.firstRecipeFound = True # indicates that the first recipe was already found
-                    if answer == "I am sorry. I couldn't find a recipe for you." or "I am sorry. Search for another recipe or try this one" in answer:
+                    # indicate that the first recipe was already found
+                    self.firstRecipeFound = True
+                    if answer == "I am sorry. I couldn't find a recipe for you." or \
+                            "I am sorry. Search for another recipe or try " \
+                            "this one" in answer:
                         # reset the attributes for a new recipe search
                         self.resetAttributes()
-                else: # after a recipe is found
-                    if 'no' in inp.lower(): # if the user doesn't like the first recipe
-                        self.recipeNumber += 1 # increase the index in the list of recipes
+
+                # after a recipe is found
+                else:
+                    # if the user doesn't like the first recipe
+                    if 'no' in inp.lower():
+                        # increase the index in the list of recipes
+                        self.recipeNumber += 1
                         answer = semiIntelligentAnswer(self.userInput, self.recipeNumber)
                         if answer == "I am sorry. I couldn't find a recipe for you.":
                             # reset the attributes for a new recipe search
                             self.resetAttributes()
                     else:
                         inMemory = fixedAnswer(inp)
-                        if inMemory != '' and self.firstRecipeFound == True: # if there is a fixed answer to the message and the first recipe was found
+                        # if there is a fixed answer to the message and the first
+                        # recipe was found
+                        if inMemory != '' and self.firstRecipeFound == True:
                             answer = inMemory
-                        else: # if the bot doesn't understand
+                        # if the bot doesn't understand
+                        else:
                             answer = 'Hmm'
                         # reset the attributes for a new recipe search
                         self.resetAttributes()
