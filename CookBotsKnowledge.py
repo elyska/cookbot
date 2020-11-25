@@ -45,9 +45,10 @@ def accessApi(keywords, healthList, dietList):
         parameters.pop('diet') # delete keys from dictionary if it is not needed
     response = requests.get(apiUrl, params=parameters)
     searchJson = response.content # data in json format
-    # print(type(searchJson))
+    #print(type(searchJson))
 
     # convert searchJson (bytes) to string, necessary for some versions of Python
+    # https://docs.python.org/3/howto/unicode.html
     searchJson = searchJson.decode('utf-8')
 
     output = json.loads(searchJson) # convert json to dictionary
