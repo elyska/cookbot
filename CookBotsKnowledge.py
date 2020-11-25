@@ -62,6 +62,7 @@ def accessApi(keywords, healthList, dietList):
 #######################################################################################
 
 def dummyAccessApi():
+    '''This function gives the same output as accessApi('brownie',['vegan'],['low-fat'])'''
     return DummyRecipe.dummyRecipe
 
 def searchOutput(keywords, healthList, dietList):
