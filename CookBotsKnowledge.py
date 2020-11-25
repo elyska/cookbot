@@ -48,6 +48,7 @@ def accessApi(keywords, healthList, dietList):
     #print(type(searchJson))
 
     # convert searchJson (bytes) to string, necessary for some versions of Python
+    # https://docs.python.org/3/whatsnew/3.6.html#json
     # https://docs.python.org/3/howto/unicode.html
     searchJson = searchJson.decode('utf-8')
 
