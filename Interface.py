@@ -1,4 +1,4 @@
-#  Interface Module to run on Discord
+#  Interface Module to run on DISCORD
 
 from CookBotsBrain import*
 import discord
@@ -24,8 +24,7 @@ class MyClient(discord.Client):
         self.recipeNumber = 0
 
     async def on_ready(self):
-        async def on_ready(self):
-            print('Logged on as', self.user)
+        print('Logged on as', self.user)
 
     async def on_message(self, message):
         # don't respond to ourselves
