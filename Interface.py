@@ -5,6 +5,7 @@ import discord
 
 #######################################################################################
 ############# code inspired by https://pypi.org/project/discord.py/####################
+########### and https://discordpy.readthedocs.io/en/latest/intro.html##################
 #######################################################################################
 
 class MyClient(discord.Client):
@@ -41,7 +42,7 @@ class MyClient(discord.Client):
                 await message.channel.send(inMemory)
 
             # if the user asks for help
-            elif 'help' in inp:
+            elif 'help' in inp.lower():
                 await message.channel.send('I can find a recipe for you based on your '
                                            'diets and allergies.')
 
@@ -115,4 +116,5 @@ client.run('Nzc2ODQ4NjQ5MTk2MDExNTQw.X662rw.jHrbtM80K0DeSfdH-sp09TgUqrA')
 
 #######################################################################################
 ########## end of code inspired by https://pypi.org/project/discord.py/################
+########### and https://discordpy.readthedocs.io/en/latest/intro.html##################
 #######################################################################################
