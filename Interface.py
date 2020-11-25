@@ -91,7 +91,7 @@ class MyClient(discord.Client):
                 # after a recipe is found
                 else:
                     # if the user doesn't like the first recipe
-                    if 'no' in inp.lower():
+                    if 'no' in inp.lower() or "n't" in inp.lower():
                         # increase the index in the list of recipes
                         self.recipeNumber += 1
                         answer = semiIntelligentAnswer(self.userInput, self.recipeNumber)
