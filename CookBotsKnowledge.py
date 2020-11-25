@@ -37,7 +37,7 @@ def accessApi(keywords, healthList, dietList):
     '''This function takes 3 inputs: keywords is a string, healthList and dietList are
     lists of strings. It returns the data from API search as a dictionary.'''
     apiUrl = "https://api.edamam.com/search"
-    parameters = {'app_id': '14a3021a', 'app_key': 'f89043d78ea9c82982e8b1ae788a04f9',
+    parameters = {'app_id': '14a3021a', 'app_key': 'ac408278840d824f473df79e73cafff9',
                   'q':keywords,'health':healthList,'diet':dietList}
     if len(healthList) == 0:
         parameters.pop('health') # delete key from dictionary if it is not needed
