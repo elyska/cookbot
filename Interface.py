@@ -46,6 +46,7 @@ class MyClient(discord.Client):
                 await message.channel.send('I can find a recipe for you based on your '
                                            'diets and allergies.')
 
+            # if the user asks for a recipe
             else:
                 # add keywords, necessary to store previous messages if the bot has to
                 # ask additional questions
